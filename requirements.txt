@@ -1,0 +1,2 @@
+nicegui>=1.6
+# You can pin an exact version if you want, e.g. nicegui==1.6.2
