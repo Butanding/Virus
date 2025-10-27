@@ -33,4 +33,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner | toLower }}/virus:latest,ghcr.io/${{ github.repository_owner | toLower }}/virus:${{ github.sha }}
+          tags: ghcr.io/${{ toLower(github.repository_owner) }}/virus:latest,ghcr.io/${{ toLower(github.repository_owner) }}/virus:${{ github.sha }}
