@@ -28,9 +28,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set lowercase repository owner
+        run: |
+          # Convert repository owner to lowercase because Docker image names must be lowercase
+          echo "OWNER_LOWER=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/virus:latest,ghcr.io/${{ github.repository_owner }}/virus:${{ github.sha }}
+          tags: ghcr.io/${{ env.OWNER_LOWER }}/virus:latest,ghcr.io/${{ env.OWNER_LOWER }}/virus:${{ github.sha }}
